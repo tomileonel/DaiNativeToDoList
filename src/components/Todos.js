@@ -1,30 +1,25 @@
 import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Todo from './Todo';
 
 const Todos = ({ todos, setTodos }) => {
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={todos}
-        renderItem={({ item }) => (
-          <Todo
-            key={item.text}
-            setTodos={setTodos}
-            todos={todos}
-            todo={item}
-          />
-        )}
-        keyExtractor={(item) => item.text} // Use a unique key based on the item
-      />
+    <View style={styles.todosContainer}>
+      {todos.map((todo, index) => (
+        <Todo
+          key={index}
+          setTodos={setTodos}
+          todos={todos}
+          todo={todo}
+        />
+      ))}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    margin: 16,
+  todosContainer: {
+    marginTop: 16,
   },
 });
 

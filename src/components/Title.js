@@ -3,21 +3,20 @@ import { Text, StyleSheet, View } from 'react-native';
 
 const Title = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>TODO LIST</Text>
+    <View style={styles.titleContainer}>
+      <Text style={styles.titleText}>TODO LIST</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center', // Centering the title horizontally
-    marginVertical: 20, // Adding vertical margin for spacing
+  titleContainer: {
+    alignItems: 'center',
+    marginVertical: 16,
   },
-  title: {
-    fontSize: 24, // Font size for the title
-    fontWeight: 'bold', // Making the font bold
-    textAlign: 'center', // Centering the text
+  titleText: {
+    fontSize: 24,
+    fontWeight: 'bold',
   },
 });
 

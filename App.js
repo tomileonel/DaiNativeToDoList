@@ -1,25 +1,14 @@
-import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, StatusBar } from 'react-native';
-import Body from './src/components/Body.js'; 
+import React from 'react';
+import { StyleSheet, StatusBar } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Body from './src/components/Body.js'; // Importa el componente Body
 
 const App = () => {
-  const [todos, setTodos] = useState([
-    {
-      text: 'Terminar el tp',
-      created: new Date('1995-12-25T13:30:00').toISOString(),
-    },
-    {
-      text: 'Terminar el tp parte 1',
-      created: new Date('1997-12-25T13:30:00').toISOString(),
-      completed: new Date('1997-12-26T13:30:00').toISOString(),
-    },
-  ]);
-
   return (
-    <SafeAreaView style={styles.container}>
+    <GestureHandlerRootView style={styles.container}>
       <StatusBar barStyle="dark-content" />
-      <Body setTodos={setTodos} todos={todos} />
-    </SafeAreaView>
+      <Body />
+    </GestureHandlerRootView>
   );
 };
 
