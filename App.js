@@ -6,12 +6,12 @@ const App = () => {
   const [todos, setTodos] = useState([
     {
       text: 'Terminar el tp',
-      created: new Date('December 25, 1995 13:30:00').toISOString(),
+      created: new Date('1995-12-25T13:30:00').toISOString(),
     },
     {
       text: 'Terminar el tp parte 1',
-      created: new Date('December 25, 1997 13:30:00').toISOString(),
-      completed: new Date('December 26, 1997 13:30:00').toISOString(),
+      created: new Date('1997-12-25T13:30:00').toISOString(),
+      completed: new Date('1997-12-26T13:30:00').toISOString(),
     },
   ]);
 
@@ -31,4 +31,3 @@ const styles = StyleSheet.create({
 });
 
 export default App;
-
