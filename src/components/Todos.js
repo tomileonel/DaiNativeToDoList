@@ -7,14 +7,18 @@ const Todos = ({ todos, setTodos }) => {
     <View style={styles.container}>
       <FlatList
         data={todos}
-        renderItem={({ item }) => (
-          <Todo
-            key={item.text}
-            setTodos={setTodos}
-            todos={todos}
-            todo={item}
-          />
-        )}
+        renderItem={({ item }) => {
+          console.log('Renderizando item:', item);
+        
+          return (
+            <Todo
+              key={item.text}
+              setTodos={setTodos}
+              todos={todos}
+              todo={item}
+            />
+          );
+        }}
         keyExtractor={(item) => item.text} // Use a unique key based on the item
       />
     </View>
