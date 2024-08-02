@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { Swipeable } from 'react-native-gesture-handler';
 
 const Todo = ({ setTodos, todos, todo }) => {
   const completar = () => {
@@ -37,7 +36,6 @@ const Todo = ({ setTodos, todos, todo }) => {
   );
 
   return (
-    <Swipeable renderRightActions={renderRightActions}>
       <TouchableOpacity onPress={completar} style={styles.todoContainer}>
         <View style={styles.todoItem}>
           <Text style={[styles.todoText, todo.completed && styles.completedText]}>
@@ -49,7 +47,6 @@ const Todo = ({ setTodos, todos, todo }) => {
           </Text>
         </View>
       </TouchableOpacity>
-    </Swipeable>
   );
 };
 

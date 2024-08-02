@@ -36,7 +36,6 @@ const App = () => {
 
   return (
     <GestureHandlerRootView style={styles.container}>
-      <StatusBar barStyle="dark-content" />
       <Body todos={todos} setTodos={setTodos} />
     </GestureHandlerRootView>
   );
