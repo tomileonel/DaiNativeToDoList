@@ -1,9 +1,11 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { Swipeable } from 'react-native-gesture-handler';
+
 
 const Todo = ({ setTodos, todos, todo }) => {
   const completar = () => {
-    const index = todos.findIndex((item) => item.text === todo.text);
+    const index = todos.findIndex((item) => item.created === todo.created);
 
     if (index !== -1) {
       const updatedTodos = [...todos];
@@ -22,7 +24,7 @@ const Todo = ({ setTodos, todos, todo }) => {
         { text: 'Cancelar', style: 'cancel' },
         {
           text: 'Eliminar',
-          onPress: () => setTodos(todos.filter(item => item.text !== todo.text)),
+          onPress: () => setTodos(todos.filter(item => item.created !== todo.created)),
           style: 'destructive',
         },
       ]
@@ -36,11 +38,15 @@ const Todo = ({ setTodos, todos, todo }) => {
   );
 
   return (
+    <Swipeable renderRightActions={renderRightActions}>
       <TouchableOpacity onPress={completar} style={styles.todoContainer}>
         <View style={styles.todoItem}>
           <View style={styles.todoTextContainer}>
             <Text style={[styles.todoText, todo.completed && styles.completedText]}>
-              {todo.text}
+              {todo.title} {/* Mostrar el título de la tarea */}
+            </Text>
+            <Text style={styles.descriptionText}>
+              {todo.description} {/* Mostrar la descripción de la tarea */}
             </Text>
           </View>
           <View style={styles.dateTextContainer}>
@@ -51,6 +57,7 @@ const Todo = ({ setTodos, todos, todo }) => {
           </View>
         </View>
       </TouchableOpacity>
+    </Swipeable>
   );
 };
 
@@ -68,23 +75,26 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   todoItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: 'column', // Cambiado a columna para mostrar título y descripción verticalmente
     padding: 16,
   },
   todoTextContainer: {
-    flex: 0.4, // 40% del espacio
+    marginBottom: 8, // Añadido margen inferior para separar título de descripción
   },
   todoText: {
     fontSize: 16,
+    fontWeight: 'bold',
+  },
+  descriptionText: {
+    fontSize: 14,
+    color: 'gray',
   },
   completedText: {
     textDecorationLine: 'line-through',
     color: '#888',
   },
   dateTextContainer: {
-    flex: 0.6, // 60% del espacio
-    alignItems: 'flex-end',
+    marginTop: 8, // Añadido margen superior para separar fecha del texto
   },
   dateText: {
     fontSize: 12,
@@ -97,6 +107,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 8,
     width: 80,
+    marginLeft: 10, // Añadido margen izquierdo para separación
   },
   deleteText: {
     color: 'white',

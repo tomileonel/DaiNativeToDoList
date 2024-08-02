@@ -2,17 +2,26 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Alert } from 'react-native';
 
 const Form = ({ setTodos, todos }) => {
-  const [inputValue, setInputValue] = useState('');
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
 
   const agregarTarea = () => {
-    const todoText = inputValue.trim();
-    if (todoText) {
+    const trimmedTitle = title.trim();
+    const trimmedDescription = description.trim();
+    
+    if (trimmedTitle && trimmedDescription) {
       const timestamp = new Date().getTime();
-      const newTodo = { text: todoText, created: timestamp, completed: null };
+      const newTodo = { 
+        title: trimmedTitle, 
+        description: trimmedDescription, 
+        created: timestamp, 
+        completed: null 
+      };
       setTodos([...todos, newTodo]);
-      setInputValue('');
+      setTitle('');
+      setDescription('');
     } else {
-      Alert.alert("Debes designarle un nombre a la tarea.");
+      Alert.alert("Debes ingresar tanto un título como una descripción para la tarea.");
     }
   };
 
@@ -20,10 +29,15 @@ const Form = ({ setTodos, todos }) => {
     <View style={styles.formContainer}>
       <TextInput
         style={styles.input}
-        placeholder="Agrega una tarea"
-        value={inputValue}
-        onChangeText={setInputValue}
-        onSubmitEditing={agregarTarea}
+        placeholder="Título de la tarea"
+        value={title}
+        onChangeText={setTitle}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Descripción de la tarea"
+        value={description}
+        onChangeText={setDescription}
       />
       <Button title="Agregar" onPress={agregarTarea} />
     </View>
