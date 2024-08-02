@@ -1,22 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Tareas from './components/Tareas';
-import Header from './components/Header';
+import React, { useState } from 'react';
+import { SafeAreaView, StyleSheet, StatusBar } from 'react-native';
+import Body from './src/components/Body.js'; 
 
-export default function App() {
+const App = () => {
+  const [todos, setTodos] = useState([
+    {
+      text: 'Terminar el tp',
+      created: new Date('December 25, 1995 13:30:00').toISOString(),
+    },
+    {
+      text: 'Terminar el tp parte 1',
+      created: new Date('December 25, 1997 13:30:00').toISOString(),
+      completed: new Date('December 26, 1997 13:30:00').toISOString(),
+    },
+  ]);
+
   return (
-    <View style={styles.container}>
-      <Header></Header>
-      <Tareas></Tareas>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="dark-content" />
+      <Body setTodos={setTodos} todos={todos} />
+    </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
+
+export default App;
+
